@@ -22,7 +22,7 @@ module.exports = app;
 
  
 let settingsDB = new Datastore( {
-    filename: "DB_STORE/POS/server/databases/settings.db",
+    filename: "config/POS/server/databases/settings.db",
     autoload: true
 } );
 
@@ -56,7 +56,7 @@ app.post( "/post", upload.single('imagename'), function ( req, res ) {
     }
 
     if(req.body.remove == 1) {
-        const path = "DB_STORE/POS/uploads/"+ req.body.img;
+        const path = "config/POS/uploads/"+ req.body.img;
         try {
           fs.unlinkSync(path)
         } catch(err) {

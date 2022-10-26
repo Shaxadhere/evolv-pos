@@ -784,6 +784,12 @@ if (auth == undefined) {
             <p style="text-align: center;">
              ${settings.footer}
              </p>
+             <p style="text-align: center;">
+             Powered by Evolv Systems
+             </p>
+             <p style="text-align: center;">
+             evolv-systems.com | 03032804856
+             </p>
             </div>`;
 
 
@@ -2235,7 +2241,7 @@ $.fn.viewTransaction = function (index) {
             <td><h3>Total</h3></td>
             <td><h3>:</h3></td>
             <td>
-                <h3>${settings.symbol}${allTransactions[index].total}</h3>
+                <h3>${settings.symbol} ${allTransactions[index].total}</h3>
             </td>
         </tr>
         ${payment == 0 ? '' : payment}
@@ -2246,6 +2252,12 @@ $.fn.viewTransaction = function (index) {
         <br>
         <p style="text-align: center;">
          ${settings.footer}
+         </p>
+         <p style="text-align: center;">
+         Powered by Evolv Systems
+         </p>
+         <p style="text-align: center;">
+         evolv-systems.com | 03032804856
          </p>
         </div>`;
 

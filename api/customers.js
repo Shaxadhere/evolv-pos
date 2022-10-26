@@ -10,7 +10,7 @@ module.exports = app;
 
  
 let customerDB = new Datastore( {
-    filename: "DB_STORE/POS/server/databases/customers.db",
+    filename: "config/POS/server/databases/customers.db",
     autoload: true
 } );
 

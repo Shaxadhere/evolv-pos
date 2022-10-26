@@ -25,7 +25,7 @@ module.exports = app;
 
 
 let inventoryDB = new Datastore({
-    filename: "DB_STORE/POS/server/databases/inventory.db",
+    filename: "config/POS/server/databases/inventory.db",
     autoload: true
 });
 

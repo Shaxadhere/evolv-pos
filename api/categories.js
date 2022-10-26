@@ -11,7 +11,7 @@ module.exports = app;
 
  
 let categoryDB = new Datastore( {
-    filename: "DB_STORE/POS/server/databases/categories.db",
+    filename: "config/POS/server/databases/categories.db",
     autoload: true
 } );
 
