@@ -1,10 +1,10 @@
 const setupEvents = require('./installers/setupEvents')
- if (setupEvents.handleSquirrelEvent()) {
-    return;
- }
- 
+if (setupEvents.handleSquirrelEvent()) {
+  return;
+}
+
 const server = require('./server');
-const {app, BrowserWindow, ipcMain} = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path')
 
 
@@ -12,12 +12,14 @@ const contextMenu = require('electron-context-menu');
 
 let mainWindow
 
+
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1500,
     height: 1200,
     frame: false,
-    minWidth: 1200, 
+    minWidth: 1200,
     minHeight: 750,
     webPreferences: {
       nodeIntegration: true,
@@ -68,27 +70,27 @@ ipcMain.on('app-reload', (event, arg) => {
 
 contextMenu({
   prepend: (params, browserWindow) => [
-     
-      {label: 'DevTools',
-       click(item, focusedWindow){
+
+    {
+      label: 'DevTools',
+      click(item, focusedWindow) {
         focusedWindow.toggleDevTools();
       }
     },
-     { 
-      label: "Reload", 
-        click() {
-          mainWindow.reload();
-      } 
-    // },
-    // {  label: 'Quit',  click:  function(){
-    //    mainWindow.destroy();
-    //     mainWindow.quit();
-    // } 
-  }  
+    {
+      label: "Reload",
+      click() {
+        mainWindow.reload();
+      }
+      // },
+      // {  label: 'Quit',  click:  function(){
+      //    mainWindow.destroy();
+      //     mainWindow.quit();
+      // } 
+    }
   ],
 
 });
 
- 
 
- 
+

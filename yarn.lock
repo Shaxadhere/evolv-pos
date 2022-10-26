@@ -2722,6 +2722,11 @@
   "resolved" "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz"
   "version" "0.6.3"
 
+"node-machine-id@^1.1.12":
+  "integrity" "sha512-QNABxbrPa3qEIfrE6GOJ7BYIuignnJw7iQ2YPbc3Nla1HzRJjXzZOiikfF8m7eAMfichLt3M4VgLOetqgDmgGQ=="
+  "resolved" "https://registry.npmjs.org/node-machine-id/-/node-machine-id-1.1.12.tgz"
+  "version" "1.1.12"
+
 "nodemon@^1.19.3":
   "integrity" "sha512-VGPaqQBNk193lrJFotBU8nvWZPqEZY2eIzymy2jjY0fJ9qIsxA0sxQ8ATPl0gZC645gijYEc1jtZvpS8QWzJGQ=="
   "resolved" "https://registry.npmjs.org/nodemon/-/nodemon-1.19.4.tgz"
