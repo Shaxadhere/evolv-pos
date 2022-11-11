@@ -5,6 +5,7 @@ let express = require("express"),
   bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 8001;
+
 console.log("Server started");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

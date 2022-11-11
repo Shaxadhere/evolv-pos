@@ -22,9 +22,9 @@ let order_index = 0;
 let user_index = 0;
 let product_index = 0;
 let transaction_index;
-let host = 'localhost';
+let host = "localhost"
+let port = "8001"
 let path = require('path');
-let port = '8001';
 let moment = require('moment');
 let Swal = require('sweetalert2');
 let { ipcRenderer } = require('electron');
@@ -33,7 +33,8 @@ let Store = require('electron-store');
 const remote = require('electron').remote;
 const app = remote.app;
 let img_path = app.getPath('appData') + '/POS/uploads/';
-let api = 'http://' + host + ':' + port + '/api/';
+let api = "http://" + host + ':' + port + '/api/';
+console.log(api)
 let btoa = require('btoa');
 let jsPDF = require('jspdf');
 let html2canvas = require('html2canvas');
@@ -210,7 +211,14 @@ if (auth == undefined) {
                 loadProductList();
 
                 $('#parent').text('');
-                $('#categories').html(`<button type="button" id="all" class="btn btn-categories btn-white waves-effect waves-light">All</button> `);
+                // let activeCategory;
+                // try {
+                //     activeCategory = document.querySelectorAll(".btn-categories.active")[0].id
+                // } catch (error) {
+                //     console.log("could not find active category")
+                // }
+                
+                $('#categories').html(`<button type="button" id="all" class="btn btn-categories btn-white waves-effect waves-light active">All</button> `);
 
                 data.forEach(item => {
 
@@ -230,6 +238,7 @@ if (auth == undefined) {
                             </div>
                         </div>`;
                     $('#parent').append(item_info);
+                    searchProducts()
                 });
 
                 categories.forEach(category => {
@@ -241,9 +250,34 @@ if (auth == undefined) {
                     $('#categories').append(`<button type="button" id="${category}" class="btn btn-categories btn-white waves-effect waves-light">${c.length > 0 ? c[0].name : ''}</button> `);
                 });
 
+                // try {
+                //     document.querySelectorAll(`.btn-categories#${activeCategory}`)[0].click()
+                // } catch (error) {
+                //     console.log("could not select active category")
+                // }
+                
             });
 
         }
+        function searchProducts() {
+            $("#categories .btn-categories").removeClass("active");
+            var matcher = new RegExp($("#search").val(), 'gi');
+            $('.box').show().not(function () {
+                return matcher.test($(this).find('.name, .sku').text())
+            }).hide();
+        }
+        setInterval(() => {
+            const activeCategory = $(".btn-categories.active")
+            const searchBarText = $("#search").val()
+            console.log(Boolean(!activeCategory.length||activeCategory[0].text=="All"), activeCategory[0])
+            if(!activeCategory.length||activeCategory[0].id=="all"||searchBarText.length>0){
+                loadProducts();
+            }
+            else{
+                console.log("not called")
+            }
+
+        }, 1000)
 
         function loadCategories() {
             $.get(api + 'categories/all', function (data) {
@@ -783,12 +817,6 @@ if (auth == undefined) {
             <br>
             <p style="text-align: center;">
              ${settings.footer}
-             </p>
-             <p style="text-align: center;">
-             Powered by Evolv Systems
-             </p>
-             <p style="text-align: center;">
-             evolv-systems.com | 03032804856
              </p>
             </div>`;
 
@@ -1513,7 +1541,7 @@ if (auth == undefined) {
 
 
                 product_list += `<tr>
-            <td><img id="`+ product.barcode + `"></td>
+            <td><img id="`+ product._id + `"></td>
             <td><img style="max-height: 50px; max-width: 50px; border: 1px solid #ddd;" src="${product.img == "" ? "./assets/images/default.jpg" : img_path + product.img}" id="product_img"></td>
             <td>${product.name}</td>
             <td>${settings.symbol}${product.price}</td>
@@ -1526,7 +1554,7 @@ if (auth == undefined) {
                     $('#product_list').html(product_list);
 
                     products.forEach(pro => {
-                        $("#" + pro.barcode + "").JsBarcode(pro.barcode, {
+                        $("#" + pro._id + "").JsBarcode(pro._id, {
                             width: 2,
                             height: 25,
                             fontSize: 14
@@ -2241,7 +2269,7 @@ $.fn.viewTransaction = function (index) {
             <td><h3>Total</h3></td>
             <td><h3>:</h3></td>
             <td>
-                <h3>${settings.symbol} ${allTransactions[index].total}</h3>
+                <h3>${settings.symbol}${allTransactions[index].total}</h3>
             </td>
         </tr>
         ${payment == 0 ? '' : payment}
@@ -2252,12 +2280,6 @@ $.fn.viewTransaction = function (index) {
         <br>
         <p style="text-align: center;">
          ${settings.footer}
-         </p>
-         <p style="text-align: center;">
-         Powered by Evolv Systems
-         </p>
-         <p style="text-align: center;">
-         evolv-systems.com | 03032804856
          </p>
         </div>`;
 

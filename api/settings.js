@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload');
 const fs = require('fs');
 
 
+
 const storage = multer.diskStorage({
     destination:  process.env.APPDATA+'/POS/uploads',
     filename: function(req, file, callback){
